@@ -1,5 +1,8 @@
 // backend/server.js
-require('dotenv').config({ path: '../.env' });
+const path = require('path'); // 1. Import the 'path' module
+// 2. Create an absolute path to the .env file in the parent directory
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
+console.log('Firebase Project ID Loaded:', process.env.FIREBASE_PROJECT_ID);
 const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');

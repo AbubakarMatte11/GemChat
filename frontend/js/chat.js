@@ -1,9 +1,11 @@
 // frontend/js/chat.js
 
 import { fetchAndRenderContacts } from './contacts.js';
+import { initializeAuthListener } from './auth-manager.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     // --- 1. INITIAL SETUP & USER VERIFICATION ---
+    initializeAuthListener();
     const user = JSON.parse(localStorage.getItem('whatsapp_clone_user'));
     if (!user || !user.token) {
         window.location.href = 'login.html';
