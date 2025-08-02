@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../assets/images/gemchat.png">
+    <title>Login - GemChat</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/auth.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-box">
+            <img src="../assets/images/gemchat.png" alt="GemChat" class="auth-logo">
+            <h1>Welcome to GemChat</h1>
+            <p>Sign in to continue.</p>
+            <button class="google-signin-btn" id="google-signin-button">
+                <img src="../assets/icons/google-icon.png" alt="Google">
+                Sign in with Google
+            </button>
+        </div>
+    </div>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "firebase/app": "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js",
+          "firebase/auth": "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js"
+        }
+      }
+    </script>
+    <script src="../js/firebase-init.js" type="module"></script>
+    <script src="../js/auth.js" type="module"></script>
+</body>
+</html>

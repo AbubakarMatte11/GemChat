@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="../assets/images/gemchat.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GemChat</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/chat.css">
+
+    <script type="importmap">
+      {
+        "imports": {
+          "firebase/app": "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js",
+          "firebase/auth": "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js",
+          "firebase/storage": "https://www.gstatic.com/firebasejs/9.22.1/firebase-storage.js"
+        }
+      }
+    </script>
+    
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+
+</head>
+<body>
+    <div class="app-container">
+        <div class="sidebar">
+            <header class="sidebar-header">
+                <div class="sidebar-user-info">
+                    <a href="profile.html">
+                        <img id="my-profile-avatar" src="../assets/images/user-avatar.png" alt="My Profile" class="profile-avatar">
+                    </a>
+                    <span id="current-user-name" class="current-user-name">Loading...</span>
+                </div>
+                <div class="sidebar-header-actions">
+                    <div class="theme-switch-wrapper">
+                        <label class="theme-switch" for="theme-checkbox">
+                            <input type="checkbox" id="theme-checkbox" />
+                            <div class="slider round"></div>
+                        </label>
+                    </div>
+                </div>
+            </header>
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Search or start new chat">
+            </div>
+            <div id="contact-list" class="contact-list"></div>
+        </div>
+
+        <main class="chat-window">
+            <div id="welcome-screen" class="welcome-screen">
+                <img src="../assets/images/gemchat.png" alt="GemChat Logo" style="width: 150px;"> <h2>Welcome to GemChat!</h2>
+                <p>Your secure, AI-powered messaging app.</p>
+                <ul class="feature-list">
+                    <li>💬 Real-Time 1-to-1 Chat</li>
+                    <li>🤖 Buddy AI Assistant (@buddy)</li>
+                    <li>👥 Contact List with Live Search</li>
+                    <li>✔️ Message Status (Sent, Delivered, Read)</li>
+                    <li>🟢 Online/Offline Presence</li>
+                    <li>🎨 Light & Dark Mode Themes</li>
+                </ul>
+            </div>
+
+            <div id="chat-content" class="chat-content hidden">
+                <header class="chat-header">
+                    <img id="chat-avatar" src="../assets/images/user-avatar.png" alt="User" class="profile-avatar">
+                    <div class="chat-header-info">
+                        <h3 id="chat-with-name"></h3>
+                        <p id="chat-with-status">offline</p>
+                    </div>
+                    <div class="chat-header-actions"></div>
+                </header>
+
+                <div id="message-container" class="message-container"></div>
+
+                <footer class="chat-input-area">
+                    <input type="text" id="message-input" placeholder="Type a message or @buddy...">
+                    <button id="send-button">➤</button>
+                </footer>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/firebase-init.js" type="module"></script>
+    <script src="../js/contacts.js" type="module"></script>
+    <script src="../js/chat.js" type="module"></script>
+</body>
+</html>

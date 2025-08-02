@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Profile - GemChat</title>
+    <link rel="icon" type="image/png" href="../assets/images/gemchat.png">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/auth.css"> <style>
+        /* A few extra styles for this page */
+        .profile-info { text-align: left; width: 100%; margin-top: 20px; }
+        .profile-info p { margin-bottom: 20px; }
+        .profile-info strong { color: var(--text-secondary); }
+        #user-email { word-wrap: break-word; }
+        .back-link { text-align: left; display: block; margin-bottom: 20px; color: var(--text-hyperlink); text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-box">
+            <a href="chat.html" class="back-link">&larr; Back to Chats</a>
+            <h1>Your Profile</h1>
+            
+            <div class="profile-info">
+                <p>
+                    <strong>Name</strong><br>
+                    <span id="user-name">Loading...</span>
+                </p>
+                <p>
+                    <strong>Email</strong><br>
+                    <span id="user-email">Loading...</span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/profile.js" type="module"></script>
+</body>
+</html>
