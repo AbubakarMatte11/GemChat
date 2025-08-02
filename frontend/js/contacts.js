@@ -34,7 +34,7 @@ export async function fetchAndRenderContacts() {
     if (!user || !user.token) return;
 
     try {
-        const response = await fetch('http://localhost:3001/api/contacts', {
+        const response = await fetch('https://gemchat-backend.onrender.com/api/contacts', {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${user.token}`

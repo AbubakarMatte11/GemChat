@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
         currentUserNameElement.textContent = user.name || user.email.split('@')[0];
     }
 
-    const socket = io('http://localhost:3001');
+    const socket = io('https://gemchat-backend.onrender.com');
     let currentRoomId = null;
     let currentContact = null;
     let readObserver;
