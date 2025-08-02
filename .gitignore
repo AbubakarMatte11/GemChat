@@ -4,8 +4,9 @@
 
 # Environment files
 .env
-/backend/.env
+
+# Firebase service account key
 /backend/config/serviceAccountKey.json
 
-# Logs
-npm-debug.log
+# System files
+.DS_Store
