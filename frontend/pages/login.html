@@ -3,23 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="../assets/images/gemchat.png">
     <title>Login - GemChat</title>
+    <link rel="icon" type="image/png" href="../assets/images/gemchat.png">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/auth.css">
-</head>
-<body>
-    <div class="auth-container">
-        <div class="auth-box">
-            <img src="../assets/images/gemchat.png" alt="GemChat" class="auth-logo">
-            <h1>Welcome to GemChat</h1>
-            <p>Sign in to continue.</p>
-            <button class="google-signin-btn" id="google-signin-button">
-                <img src="../assets/icons/google-icon.png" alt="Google">
-                Sign in with Google
-            </button>
-        </div>
-    </div>
 
     <script type="importmap">
       {
@@ -29,8 +16,26 @@
         }
       }
     </script>
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-box">
+            <img src="../assets/images/gemchat.png" alt="GemChat Logo" class="auth-logo">
+            <h1>Welcome to GemChat</h1>
+            <p>Sign in to continue.</p>
+            <button class="google-signin-btn" id="google-signin-button">
+                <img src="../assets/icons/google-icon.png" alt="Google" style="width: 24px; height: 24px;">
+                Sign in with Google
+            </button>
+        </div>
+    </div>
+
     <script src="../js/firebase-init.js" type="module"></script>
-    <script src="../js/auth-manager.js" type="module"></script> <script src="../js/contacts.js" type="module"></script>
-    <script src="../js/chat.js" type="module"></script>
+    <script src="../js/auth-manager.js" type="module"></script>
+    <script src="../js/auth.js" type="module"></script>
+    <script type="module">
+        import { initializeAuthListener } from '../js/auth-manager.js';
+        initializeAuthListener(); // Start the listener
+    </script>
 </body>
 </html>

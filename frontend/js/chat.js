@@ -7,9 +7,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 1. INITIAL SETUP & USER VERIFICATION ---
     initializeAuthListener();
     const user = JSON.parse(localStorage.getItem('whatsapp_clone_user'));
-    if (!user || !user.token) {
-        window.location.href = 'login.html';
-        return;
+
+    // ✅ ADD THIS GUARD CLAUSE
+    // If no user is found, stop executing this script immediately.
+    // The auth-manager will handle redirecting to the login page.
+    if (!user) {
+        console.log("No user found in localStorage. Waiting for auth manager to redirect.");
+        return; 
     }
 
     // --- 2. DOM ELEMENT GETTERS ---
@@ -68,19 +72,17 @@ document.addEventListener('DOMContentLoaded', () => {
         messageDiv.id = data.id;
         messageDiv.dataset.messageData = JSON.stringify(data);
 
-        // Check if the author is an object (a real user) or a string (the bot).
         const authorName = typeof data.author === 'object' ? data.author.name : data.author;
 
         messageDiv.innerHTML = `
             <div class="message-bubble">
                 <strong>${authorName}</strong><br>
                 ${!data.type ? `<span>${data.message}</span>` : ''}
-                <div class="message-info">${data.time}</div>
+                <div class.message-info">${data.time}</div>
             </div>
         `;
         messageContainer.appendChild(messageDiv);
 
-        // We only send delivery/read receipts for messages from real users.
         if (typeof data.author === 'object') {
             socket.emit('message_delivered', { id: data.id, roomId: data.roomId, author: data.author });
             if (readObserver) readObserver.observe(messageDiv);
@@ -192,7 +194,6 @@ const themeToggle = document.getElementById('theme-checkbox');
 if (themeToggle) {
     const currentTheme = localStorage.getItem('theme');
 
-    // Apply the saved theme on initial load
     if (currentTheme) {
         document.documentElement.setAttribute('data-theme', currentTheme);
         if (currentTheme === 'dark') {
@@ -200,7 +201,6 @@ if (themeToggle) {
         }
     }
 
-    // Listen for changes on the toggle
     themeToggle.addEventListener('change', function(e) {
         if (e.target.checked) {
             document.documentElement.setAttribute('data-theme', 'dark');

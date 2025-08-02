@@ -2,14 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" type="image/png" href="../assets/images/gemchat.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GemChat</title>
+    <title>GemChat - Diagnostic Mode</title>
+    <link rel="icon" type="image/png" href="../assets/images/gemchat.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/chat.css">
 
@@ -23,7 +22,18 @@
       }
     </script>
     
-    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+    <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
+
+    <script>
+      if (typeof io === 'undefined') {
+        // If 'io' is still not defined, it proves the script is being blocked.
+        alert("CRITICAL ERROR: The Socket.IO library failed to load. This is likely caused by a browser extension (like an ad blocker) or a network firewall. Please check your extensions and try a different browser or network.");
+        throw new Error("Socket.IO library is blocked or failed to load.");
+      } else {
+        // If 'io' is defined, we can proceed.
+        console.log("%cSUCCESS: Socket.IO library loaded correctly. 'io' is defined.", "color: green; font-weight: bold; font-size: 1.2em;");
+      }
+    </script>
 
 </head>
 <body>
@@ -31,9 +41,7 @@
         <div class="sidebar">
             <header class="sidebar-header">
                 <div class="sidebar-user-info">
-                    <a href="profile.html">
-                        <img id="my-profile-avatar" src="../assets/images/user-avatar.png" alt="My Profile" class="profile-avatar">
-                    </a>
+                    <a href="profile.html"><img id="my-profile-avatar" src="../assets/images/user-avatar.png" alt="My Profile" class="profile-avatar"></a>
                     <span id="current-user-name" class="current-user-name">Loading...</span>
                 </div>
                 <div class="sidebar-header-actions">
@@ -45,15 +53,13 @@
                     </div>
                 </div>
             </header>
-            <div class="search-bar">
-                <input type="text" id="search-input" placeholder="Search or start new chat">
-            </div>
+            <div class="search-bar"><input type="text" id="search-input" placeholder="Search or start new chat"></div>
             <div id="contact-list" class="contact-list"></div>
         </div>
-
         <main class="chat-window">
             <div id="welcome-screen" class="welcome-screen">
-                <img src="../assets/images/gemchat.png" alt="GemChat Logo" style="width: 150px;"> <h2>Welcome to GemChat!</h2>
+                <img src="../assets/images/gemchat.png" alt="GemChat Logo" style="width: 150px;">
+                <h2>Welcome to GemChat!</h2>
                 <p>Your secure, AI-powered messaging app.</p>
                 <ul class="feature-list">
                     <li>💬 Real-Time 1-to-1 Chat</li>
@@ -64,7 +70,6 @@
                     <li>🎨 Light & Dark Mode Themes</li>
                 </ul>
             </div>
-
             <div id="chat-content" class="chat-content hidden">
                 <header class="chat-header">
                     <img id="chat-avatar" src="../assets/images/user-avatar.png" alt="User" class="profile-avatar">
@@ -74,9 +79,7 @@
                     </div>
                     <div class="chat-header-actions"></div>
                 </header>
-
                 <div id="message-container" class="message-container"></div>
-
                 <footer class="chat-input-area">
                     <input type="text" id="message-input" placeholder="Type a message or @buddy...">
                     <button id="send-button">➤</button>
@@ -86,7 +89,12 @@
     </div>
 
     <script src="../js/firebase-init.js" type="module"></script>
-    <script src="../js/auth-manager.js" type="module"></script> <script src="../js/contacts.js" type="module"></script>
+    <script src="../js/auth-manager.js" type="module"></script>
+    <script src="../js/contacts.js" type="module"></script>
     <script src="../js/chat.js" type="module"></script>
+    <script type="module">
+        import { initializeAuthListener } from '../js/auth-manager.js';
+        initializeAuthListener();
+    </script>
 </body>
 </html>
